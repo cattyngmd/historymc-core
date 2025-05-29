@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
+// TODO migrate to annotations
 public final class Config extends Configuration {
     private final Map<String, ChatColor> colorMap = new HashMap<>();
 
