@@ -1,0 +1,33 @@
+entity-attack:
+  - <victim> was slayed by <attacker>.
+  - <attacker> killed <victim>.
+  - <victim> was eliminated by <attacker>.
+  - <victim> got Owned by <attacker>.
+projectile:
+  - <victim> was shot.
+suffocation:
+  - <victim> was suffocated to death.
+fall:
+  - <victim> fell and broke his legs.
+fire:
+  - <victim> was burned alive.
+fire-tick:
+  - <victim> was burned alive.
+lava:
+  - <victim> fell in lava.
+drowning:
+  - <victim> drowned.
+block-explosion:
+  - <victim> was blown up.
+tnt-explosion:
+  - <victim> was blown up.
+bed-explosion:
+  - <victim> was bombed.
+entity-explosion:
+  - <victim> blew up.
+void:
+  - <victim> fell into the void.
+lightning:
+  - <victim> was stroke by lightning.
+default:
+  - <victim> died.

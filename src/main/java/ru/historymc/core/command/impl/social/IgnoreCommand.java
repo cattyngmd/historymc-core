@@ -1,0 +1,41 @@
+package ru.historymc.core.command.impl.social;
+
+import org.bukkit.Bukkit;
+import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
+import ru.historymc.core.Main;
+import ru.historymc.core.command.Command;
+import ru.historymc.core.command.exception.CommandException;
+import ru.historymc.core.command.exception.InvalidUsageException;
+import ru.historymc.core.player.PlayerExtra;
+import ru.historymc.core.player.PlayerStorage;
+
+import java.util.Locale;
+
+public final class IgnoreCommand extends Command {
+    public IgnoreCommand(Main plugin) {
+        super(plugin, "ignore");
+    }
+
+    @Override
+    public void onCommand(CommandSender sender, String[] args) throws CommandException {
+        if (args.length != 1) {
+            throw new InvalidUsageException();
+        }
+
+        String name = args[0].toLowerCase(Locale.ROOT);
+        Player player = Bukkit.getPlayerExact(name);
+        if (player == null) {
+            throw new CommandException("Player is currently offline.");
+        }
+
+        PlayerExtra extra = PlayerStorage.getInstance().get(sender);
+        if (extra.isIgnoring(player)) {
+            extra.getIgnoreList().remove(name);
+            sender.sendMessage("You have ignored " + highlight(player.getName()));
+        } else {
+            extra.getIgnoreList().add(name);
+            sender.sendMessage("You have unignored " + highlight(player.getName()));
+        }
+    }
+}

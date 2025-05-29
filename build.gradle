@@ -1,0 +1,25 @@
+plugins {
+    id 'java'
+}
+
+group = project.group
+version = project.version
+
+repositories {
+    maven {
+        name = "johnymuffin-nexus-releases"
+        url = "https://repository.johnymuffin.com/repository/maven-public/"
+    }
+    mavenCentral()
+}
+
+dependencies {
+    compileOnly("com.legacyminecraft.poseidon:poseidon-craftbukkit:${project.poseidon_version}")
+}
+
+processResources {
+    filteringCharset 'UTF-8'
+    filesMatching('plugin.yml') {
+        expand('version' : project.version)
+    }
+}

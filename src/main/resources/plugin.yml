@@ -1,0 +1,25 @@
+name: hmc-core
+description: historymc plugin
+main: ru.historymc.core.Main
+version: {version}
+authors:
+  - cattyn
+
+commands:
+  list:
+    usage: /list
+    aliases: [ online ]
+  kill:
+    usage: /kill
+    aliases: [ suicide ]
+  town:
+    usage: /town
+
+  whisper:
+    usage: /whisper <player> [message]
+    aliases: [ w, tell, msg ]
+  reply:
+    usage: /reply [message]
+    aliases: [ r ]
+  ignore:
+    usage: /ignore <player>
