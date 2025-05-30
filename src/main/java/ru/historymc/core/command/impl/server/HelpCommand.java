@@ -15,11 +15,7 @@ public final class HelpCommand extends Command {
     @Override
     public void onCommand(CommandSender sender, String[] args) throws CommandException {
         for (String cmd : cmds) {
-            sender.sendMessage(getUsage(cmd));
+            sender.sendMessage(plugin.getCommand(cmd).getUsage());
         }
-    }
-
-    String getUsage(String cmd) {
-        return plugin.getCommand(cmd).getUsage();
     }
 }
