@@ -6,7 +6,7 @@ import ru.historymc.core.tasks.AbstractTask;
 import ru.historymc.core.utils.Utils;
 
 import java.time.Duration;
-import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 import static java.time.Duration.*;
@@ -15,7 +15,7 @@ public class RestartTask extends AbstractTask {
     private final long start = System.currentTimeMillis();
     private final long restart = ofHours(4).toMillis();
 
-    private final List<WarnPair> pairs = new ArrayList<>(List.of(
+    private final List<WarnPair> pairs = new LinkedList<>(List.of(
             new WarnPair(ofMinutes(10), "10 minutes"),
             new WarnPair(ofMinutes(5), "5 minutes"),
             new WarnPair(ofMinutes(1), "1 minute"),
@@ -33,15 +33,16 @@ public class RestartTask extends AbstractTask {
             return;
         }
 
-        if (!pairs.isEmpty() && pairs.getFirst().passed(start)) {
+        if (!pairs.isEmpty() && passed(pairs.getFirst())) {
             WarnPair pair = pairs.removeFirst();
             Utils.broadcast("The server will be restarted in %s.", pair.message());
         }
     }
 
+    private boolean passed(WarnPair pair) {
+        return Utils.passed(start, restart - pair.duration.toMillis());
+    }
+
     private record WarnPair(Duration duration, String message) {
-        public boolean passed(long time) {
-            return Utils.passed(time, duration.toMillis());
-        }
     }
 }
