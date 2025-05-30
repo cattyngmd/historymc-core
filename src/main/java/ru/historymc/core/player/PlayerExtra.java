@@ -13,6 +13,7 @@ public final class PlayerExtra {
     @SerializedName("name") private final String name;
     @SerializedName("town") private String town;
     @SerializedName("chatColor") private ChatColor color = ChatColor.WHITE;
+    @SerializedName("joinTime") private long joinTime = System.currentTimeMillis();
 
     @SerializedName("ignore")
     private final List<String> ignoreList = new ArrayList<>();
@@ -53,6 +54,10 @@ public final class PlayerExtra {
 
     public void setColor(ChatColor color) {
         this.color = color;
+    }
+
+    public long getJoinTime() {
+        return joinTime;
     }
 
     public boolean isIgnoring(CommandSender player) {

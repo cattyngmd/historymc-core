@@ -1,4 +1,5 @@
 plugins {
+    id 'io.github.goooler.shadow' version '8.1.8'
     id 'java'
 }
 
@@ -7,14 +8,26 @@ version = project.version
 
 repositories {
     maven {
-        name = "johnymuffin-nexus-releases"
-        url = "https://repository.johnymuffin.com/repository/maven-public/"
+        name "jitpack"
+        url "https://jitpack.io"
+    }
+    maven {
+        name "johnymuffin-nexus-releases"
+        url "https://repository.johnymuffin.com/repository/maven-public/"
     }
     mavenCentral()
 }
 
+java {
+    toolchain {
+        languageVersion.set(JavaLanguageVersion.of(21))
+    }
+}
+
 dependencies {
     compileOnly("com.legacyminecraft.poseidon:poseidon-craftbukkit:${project.poseidon_version}")
+
+    implementation("com.github.cattyngmd.catformat:catformat-core:${project.catformat_version}")
 }
 
 processResources {
@@ -22,4 +35,12 @@ processResources {
     filesMatching('plugin.yml') {
         expand('version' : project.version)
     }
+}
+
+shadowJar {
+    minimize()
+}
+
+tasks.build {
+    dependsOn tasks.shadowJar
 }

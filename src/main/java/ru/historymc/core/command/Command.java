@@ -1,11 +1,14 @@
 package ru.historymc.core.command;
 
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
 import ru.historymc.core.Main;
 import ru.historymc.core.command.exception.CommandException;
 import ru.historymc.core.command.exception.InvalidUsageException;
+import ru.historymc.core.command.exception.NoPlayerFoundException;
 
 public abstract class Command implements CommandExecutor {
     protected final Main plugin;
@@ -43,6 +46,19 @@ public abstract class Command implements CommandExecutor {
 
     protected void sendUsage(CommandSender sender) {
         sender.sendMessage(this.usage);
+    }
+
+    protected Player player(String[] args) throws CommandException {
+        if (args.length == 0) {
+            throw new InvalidUsageException();
+        }
+
+        Player player = Bukkit.getPlayerExact(args[0]);
+        if (player == null) {
+            throw new NoPlayerFoundException(args[0]);
+        }
+
+        return player;
     }
 
     public String getName() {

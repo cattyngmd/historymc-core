@@ -14,6 +14,9 @@ commands:
     aliases: [ suicide ]
   town:
     usage: /town
+  join:
+    usage: /join <player>
+    aliases: [ jd, joindate ]
 
   whisper:
     usage: /whisper <player> [message]

@@ -1,11 +1,11 @@
 package ru.historymc.core.utils;
 
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
+import ru.historymc.core.Globals;
 
-public class Utils {
+public class Utils implements Globals {
     private static final int SUBSTRING = "Craft".length();
 
     public static int clamp(int a, int min, int max) {
@@ -24,7 +24,7 @@ public class Utils {
     }
 
     public static void broadcast(String message) {
-        Bukkit.getServer().broadcastMessage(String.format("[%sSERVER%s] %s", ChatColor.RED, ChatColor.WHITE, message));
+        Bukkit.getServer().broadcastMessage(formatter.format("[{red}SERVER{white}] %s", message));
     }
 
     public static void broadcast(String message, Object... objects) {
