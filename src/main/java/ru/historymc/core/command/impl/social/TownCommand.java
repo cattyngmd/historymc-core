@@ -26,5 +26,6 @@ public final class TownCommand extends Command {
 
         String town = String.join(" ", args);
         PlayerStorage.getInstance().get(sender).setTown(town);
+        sender.sendMessage("New chat suffix: " + town);
     }
 }
