@@ -8,7 +8,7 @@ projectile:
 suffocation:
   - <victim> was suffocated to death.
 fall:
-  - <victim> fell and broke his legs.
+  - <victim> fell and broke their legs.
 fire:
   - <victim> was burned alive.
 fire-tick:
