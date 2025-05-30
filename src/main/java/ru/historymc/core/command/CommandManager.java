@@ -4,6 +4,7 @@ import org.bukkit.command.PluginCommand;
 import ru.historymc.core.Main;
 import ru.historymc.core.command.impl.misc.JoinCommand;
 import ru.historymc.core.command.impl.misc.KillCommand;
+import ru.historymc.core.command.impl.misc.NameColorCommand;
 import ru.historymc.core.command.impl.server.ListCommand;
 import ru.historymc.core.command.impl.social.IgnoreCommand;
 import ru.historymc.core.command.impl.social.ReplyCommand;
@@ -21,6 +22,7 @@ public final class CommandManager {
         register(new ListCommand(plugin));
         register(new KillCommand(plugin));
         register(new JoinCommand(plugin));
+        register(new NameColorCommand(plugin));
 
         register(new TownCommand(plugin));
         register(new WhisperCommand(plugin));

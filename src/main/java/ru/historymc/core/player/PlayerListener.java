@@ -1,9 +1,6 @@
 package ru.historymc.core.player;
 
-import org.bukkit.Chunk;
-import org.bukkit.Location;
-import org.bukkit.Material;
-import org.bukkit.World;
+import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -33,7 +30,7 @@ public final class PlayerListener implements Listener {
         }
 
         PlayerStorage.getInstance().add(extra);
-        event.getPlayer().setDisplayName(extra.getColor() + player);
+        event.getPlayer().setDisplayName(extra.getColor() + player + ChatColor.WHITE);
     }
 
     @EventHandler

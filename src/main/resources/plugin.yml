@@ -17,6 +17,11 @@ commands:
   join:
     usage: /join <player>
     aliases: [ jd, joindate ]
+  namecolor:
+    usage: /namecolor <player> <color>
+    aliases: [ nc ]
+    permission: op
+    permission-message: :^)
 
   whisper:
     usage: /whisper <player> [message]
