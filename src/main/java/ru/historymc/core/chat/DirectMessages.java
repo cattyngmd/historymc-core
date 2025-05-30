@@ -28,7 +28,7 @@ public final class DirectMessages implements Globals {
             return;
         }
 
-        String formatted = formatter.format("{red}[%s -> %s]{white} %s", sender.getName(), recipient.getName(), message);
+        String formatted = formatter.format("{red}[%s -> %s] {white} %s", sender.getName(), recipient.getName(), message);
 
         sender.sendMessage(formatted);
         recipient.sendMessage(formatted);
