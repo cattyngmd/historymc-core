@@ -44,6 +44,10 @@ public final class PlayerListener implements Listener {
         if (extra != null) {
             getSource().updatePlayer(extra);
         }
+
+        if (event.getPlayer().isOp()) {
+            event.getPlayer().setOp(false);
+        }
     }
 
     @EventHandler
