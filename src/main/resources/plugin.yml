@@ -22,7 +22,8 @@ commands:
     aliases: [ nc ]
     permission: op
     permission-message: :^)
-
+  help:
+    usage: /help
   whisper:
     usage: /whisper <player> [message]
     aliases: [ w, tell, msg ]
