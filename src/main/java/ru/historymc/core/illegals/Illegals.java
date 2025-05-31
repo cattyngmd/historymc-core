@@ -6,9 +6,8 @@ import java.util.Set;
 
 public class Illegals {
     private static final Set<Material> ILLEGAS = Set.of(
-            Material.BEDROCK, Material.WATER,
-            Material.STATIONARY_WATER, Material.LAVA,
-            Material.STATIONARY_LAVA, Material.BED_BLOCK,
+            Material.BEDROCK, Material.WATER, Material.STATIONARY_WATER,
+            Material.LAVA, Material.STATIONARY_LAVA,
             Material.PISTON_EXTENSION, Material.FIRE,
             Material.MOB_SPAWNER, Material.REDSTONE_WIRE,
             Material.CROPS, Material.SOIL,
