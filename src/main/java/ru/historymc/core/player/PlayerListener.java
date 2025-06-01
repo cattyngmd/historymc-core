@@ -74,7 +74,10 @@ public final class PlayerListener implements Listener {
 
     @EventHandler
     public void onRespawn(PlayerRespawnEvent event) {
-        Location location = null;
+        Location location = event.getRespawnLocation();
+        if (Math.abs(location.getX()) > 2 || Math.abs(location.getZ()) > 2) return;
+
+        location = null;
         while (location == null) {
             location = random(event.getRespawnLocation().getWorld());
         }
