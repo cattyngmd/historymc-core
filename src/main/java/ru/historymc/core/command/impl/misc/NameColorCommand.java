@@ -2,6 +2,7 @@ package ru.historymc.core.command.impl.misc;
 
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.entity.Player;
 import ru.historymc.core.Main;
 import ru.historymc.core.command.Command;
@@ -19,19 +20,50 @@ public final class NameColorCommand extends Command {
 
     @Override
     public void onCommand(CommandSender sender, String[] args) throws CommandException {
-        if (args.length != 2) {
+        if (args.length != 1) {
             throw new InvalidUsageException();
         }
 
+        if (sender instanceof ConsoleCommandSender) {
+            onCommandServer(sender, args);
+            return;
+        }
+
+        if (!(sender instanceof Player)) {
+            throw new InvalidUsageException(); // Lol
+        }
+
+        PlayerExtra extra = PlayerStorage.getInstance().get(sender);
+        if (extra.getColor() == ChatColor.WHITE) {
+            throw new CommandException("Nope");
+        }
+
+        ChatColor color = getColor(args[0]);
+
+        extra.setColor(color);
+        sync(sender);
+    }
+
+    private void onCommandServer(CommandSender sender, String[] args) throws CommandException {
         Player player = player(args);
         PlayerExtra extra = PlayerStorage.getInstance().get(player);
+        extra.setColor(ChatColor.GREEN);
+        sync(player);
+    }
 
+    private ChatColor getColor(String arg) throws CommandException {
         try {
-            ChatColor color = ChatColor.valueOf(args[1].toUpperCase(Locale.ROOT));
-            extra.setColor(color);
+            ChatColor color = ChatColor.valueOf(arg.toUpperCase(Locale.ROOT));
+            if (color == ChatColor.WHITE) throw new IllegalArgumentException();
+            return color;
+        } catch (IllegalArgumentException e) {
+            throw new CommandException("Invalid color provided");
+        }
+    }
+
+    private void sync(CommandSender entity) {
+        if (entity instanceof Player player) {
             player.kickPlayer(ChatColor.YELLOW + ":^)");
-        } catch (Exception e) {
-            throw new CommandException("Invalid color provided.");
         }
     }
 }

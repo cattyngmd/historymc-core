@@ -20,8 +20,6 @@ commands:
   namecolor:
     usage: /namecolor <player> <color>
     aliases: [ nc ]
-    permission: op
-    permission-message: :^)
   help:
     usage: /help
   whisper:
