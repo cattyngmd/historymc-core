@@ -44,7 +44,7 @@ public class Main extends JavaPlugin {
 
         register(new DeathListener(messages));
         register(new IllegalsListener());
-        register(new PlayerListener(config));
+        register(new PlayerListener(this, config));
 
         for (World world : getServer().getWorlds()) {
             BlockPos pos = config.getSpawn();

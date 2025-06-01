@@ -2,23 +2,48 @@ package ru.historymc.core.player;
 
 import org.bukkit.*;
 import org.bukkit.block.Block;
+import org.bukkit.event.Event;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.player.PlayerJoinEvent;
-import org.bukkit.event.player.PlayerMoveEvent;
-import org.bukkit.event.player.PlayerQuitEvent;
-import org.bukkit.event.player.PlayerRespawnEvent;
+import org.bukkit.event.player.*;
+import org.bukkit.plugin.Plugin;
 import ru.historymc.core.Config;
 import ru.historymc.core.utils.Utils;
 import ru.historymc.core.player.source.DataSource;
+import uk.org.whoami.authme.cache.limbo.LimboCache;
 
+import java.nio.file.Path;
+import java.util.Locale;
 import java.util.concurrent.ThreadLocalRandom;
+import java.util.concurrent.atomic.AtomicReference;
 
 public final class PlayerListener implements Listener {
+    private final Plugin plugin;
     private final Config config;
 
-    public PlayerListener(Config config) {
+    public PlayerListener(Plugin plugin, Config config) {
+        this.plugin = plugin;
         this.config = config;
+    }
+
+    @EventHandler
+    public void onJoin(PlayerJoinEvent event) {
+        String player = event.getPlayer().getName().toLowerCase(Locale.ROOT);
+        Path path = plugin.getDataFolder().toPath().resolve("players");
+        if (path.resolve( player + ".data").toFile().exists())
+            return;
+
+        AtomicReference<Location> location = new AtomicReference<>(null);
+        while (location.get() == null) {
+            location.set(random(event.getPlayer().getWorld()));
+        }
+
+        Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, () -> {
+            Location loc = LimboCache.getInstance().getLimboPlayer(player).getLoc();
+            loc.setX(location.get().getX());
+            loc.setY(location.get().getY());
+            loc.setZ(location.get().getZ());
+        });
     }
 
     @EventHandler
