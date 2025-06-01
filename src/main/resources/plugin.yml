@@ -2,8 +2,6 @@ name: hmc-core
 description: historymc plugin
 main: ru.historymc.core.Main
 version: {version}
-depend:
-  - AuthMe
 authors:
   - cattyn
 

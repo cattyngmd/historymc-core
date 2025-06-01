@@ -8,6 +8,10 @@ public record BlockPos(int x, int y, int z) {
         return new BlockPos((int) Math.floor(x), (int) Math.floor(y), (int) Math.floor(z));
     }
 
+    public BlockPos down() {
+        return new BlockPos(x, y - 1, z);
+    }
+
     public Location toLoc(World world) {
         return new Location(world, x, y, z);
     }

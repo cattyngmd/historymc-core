@@ -23,7 +23,7 @@ public class SpawnRestoreTask extends AbstractTask {
 
         BlockPos pos = main.getConfig().getSpawn();
         for (BlockPos bp : getSpawnPositions(pos)) {
-            Location loc = bp.toLoc(world);
+            Location loc = bp.down().toLoc(world);
             Block block = world.getBlockAt(loc);
             if (block.getType() != Material.BEDROCK) {
                 block.setType(Material.BEDROCK);
