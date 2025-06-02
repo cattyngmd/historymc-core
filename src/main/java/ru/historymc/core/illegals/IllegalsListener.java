@@ -27,12 +27,9 @@ public class IllegalsListener implements Listener {
         Material material = event.getBlock().getType();
         Player player = event.getPlayer();
 
-        if (Illegals.isIllegal(material)) {
+        if (Illegals.isIllegal(material) && player.getItemInHand().getType() == material) {
             event.setCancelled(true);
-
-            if (player.getItemInHand().getType() == material) {
-                player.setItemInHand(new ItemStack(Material.AIR));
-            }
+            player.setItemInHand(new ItemStack(Material.AIR));
         }
     }
 
