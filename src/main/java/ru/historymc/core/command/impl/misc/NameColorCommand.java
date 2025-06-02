@@ -48,6 +48,8 @@ public final class NameColorCommand extends Command {
         Player player = player(args);
         PlayerExtra extra = PlayerStorage.getInstance().get(player);
         extra.setColor(ChatColor.GREEN);
+        // TODO сделать это не только на месяц
+        extra.resetColorTime();
         sync(player);
     }
 
