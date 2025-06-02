@@ -24,9 +24,6 @@ jobs:
         java-version: '21'
         distribution: 'temurin'
 
-    - name: Setup Gradle
-      uses: gradle/actions/setup-gradle@af1da67850ed9a4cedd57bfd976089dd991e2582 # v4.0.0
-
     - name: Build with Gradle
       run: |
         chmod +x ./gradlew
@@ -35,6 +32,6 @@ jobs:
     - name: Upload
       uses: actions/upload-artifact@v4
       with:
-        name: mio-fabric
+        name: hmc-core
         path: |
-          build/libs/mio-1.0-SNAPSHOT.jar
+          build/libs/*-all.jar
