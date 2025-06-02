@@ -4,6 +4,7 @@ import com.google.gson.annotations.SerializedName;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -12,8 +13,10 @@ import java.util.Locale;
 public final class PlayerExtra {
     @SerializedName("name") private final String name;
     @SerializedName("town") private String town;
-    @SerializedName("chatColor") private ChatColor color = ChatColor.WHITE;
     @SerializedName("joinTime") private long joinTime = System.currentTimeMillis();
+
+    @SerializedName("chatColor") private ChatColor color = ChatColor.WHITE;
+    @SerializedName("resetColorTime") private long resetColorTime = -1;
 
     @SerializedName("ignore")
     private final List<String> ignoreList = new ArrayList<>();
@@ -58,6 +61,14 @@ public final class PlayerExtra {
 
     public long getJoinTime() {
         return joinTime;
+    }
+
+    public void resetColorTime() {
+        resetColorTime = System.currentTimeMillis() + Duration.ofDays(30).toMillis();
+    }
+
+    public long getResetColorTime() {
+        return resetColorTime;
     }
 
     public boolean isIgnoring(CommandSender player) {
