@@ -14,7 +14,7 @@ import java.util.Set;
 
 public class SpawnRestoreTask extends AbstractTask {
     public SpawnRestoreTask(Main main) {
-        super(main, 20, 20);
+        super(main, 10, 20);
     }
 
     @Override
@@ -27,6 +27,10 @@ public class SpawnRestoreTask extends AbstractTask {
             Block block = world.getBlockAt(loc);
             if (block.getType() != Material.BEDROCK) {
                 block.setType(Material.BEDROCK);
+            }
+            block = world.getBlockAt(bp.toLoc(world));
+            if (block.getType() != Material.AIR) {
+                block.setType(Material.AIR);
             }
         }
     }
