@@ -72,4 +72,8 @@ public class Main extends JavaPlugin {
     public Config getConfig() {
         return config;
     }
+
+    public CommandManager getCommands() {
+        return commands;
+    }
 }

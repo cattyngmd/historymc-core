@@ -12,7 +12,11 @@ import ru.historymc.core.command.impl.social.ReplyCommand;
 import ru.historymc.core.command.impl.social.TownCommand;
 import ru.historymc.core.command.impl.social.WhisperCommand;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public final class CommandManager {
+    private final List<Command> regisry = new ArrayList<>();
     private final Main plugin;
 
     public CommandManager(Main plugin) {
@@ -35,5 +39,10 @@ public final class CommandManager {
         PluginCommand cmd = plugin.getCommand(command.getName());
         cmd.setExecutor(command);
         command.usage(cmd.getUsage());
+        regisry.add(command);
+    }
+
+    public List<Command> getRegistry() {
+        return regisry;
     }
 }

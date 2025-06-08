@@ -10,12 +10,11 @@ public final class HelpCommand extends Command {
         super(plugin, "help");
     }
 
-    String[] cmds = new String[] { "list", "kill", "whisper", "reply", "ignore", "town", "join" };
-
     @Override
     public void onCommand(CommandSender sender, String[] args) throws CommandException {
-        for (String cmd : cmds) {
-            sender.sendMessage(plugin.getCommand(cmd).getUsage());
+        sender.sendMessage("Server commands: ");
+        for (Command cmd : plugin.getCommands().getRegistry()) {
+            sender.sendMessage(plugin.getCommand(cmd.getName()).getUsage());
         }
     }
 }
