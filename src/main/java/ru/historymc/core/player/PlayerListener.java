@@ -2,9 +2,12 @@ package ru.historymc.core.player;
 
 import org.bukkit.*;
 import org.bukkit.block.Block;
+import org.bukkit.entity.Item;
+import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.player.*;
 import org.bukkit.plugin.Plugin;
 import ru.historymc.core.Config;
@@ -92,6 +95,16 @@ public final class PlayerListener implements Listener {
         if (x >= wb || x <= -wb || z >= wb || z <= -wb) {
             event.getTo().setX(Utils.clamp((int) x, -wb + 3, wb - 3));
             event.getTo().setZ(Utils.clamp((int) z, -wb + 3, wb - 3));
+        }
+    }
+
+    @EventHandler(priority = Event.Priority.Monitor)
+    public void onAttack(EntityDamageByEntityEvent event) {
+        if (!(event.getEntity() instanceof Player))
+            return;
+
+        if (event.getEntity() instanceof Item || event.getDamager() == event.getEntity()) {
+            event.setCancelled(true);
         }
     }
 
