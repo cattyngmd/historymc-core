@@ -100,7 +100,7 @@ public final class PlayerListener implements Listener {
 
     @EventHandler(priority = Event.Priority.Monitor)
     public void onAttack(EntityDamageByEntityEvent event) {
-        if (!(event.getEntity() instanceof Player))
+        if (!(event.getDamager() instanceof Player))
             return;
 
         if (event.getEntity() instanceof Item || event.getDamager() == event.getEntity()) {
