@@ -27,10 +27,10 @@ public final class DeathMessages implements Globals {
 
     public static String format(String format, Player victim, DamageData data) {
         String result = format.replace("<victim>", victim.getName());
-        if (data.damager() == null) {
-            return result;
+        if (data.damager() != null) {
+            result = result.replace("<attacker>", Utils.getName(data.damager()));
         }
-        return result.replace("<attacker>", Utils.getName(data.damager()));
+        return formatter.format(result);
     }
 
     public String format(Player victim, DamageData data) {
