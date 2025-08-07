@@ -29,7 +29,7 @@ public final class JoinCommand extends Command implements Globals {
         calendar.setTimeInMillis(extra.getJoinTime());
         String date = getPrettyDate(calendar);
 
-        sender.sendMessage(formatter.format("%s first joined the server on {red} %s", player.getName(), date));
+        send(sender, "%s first joined the server on {red} %s", player.getName(), date);
     }
 
     private static String getPrettyDate(Calendar calendar) {

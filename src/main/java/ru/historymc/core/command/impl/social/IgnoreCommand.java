@@ -29,10 +29,10 @@ public final class IgnoreCommand extends Command implements Globals {
 
         if (extra.isIgnoring(player)) {
             extra.getIgnoreList().remove(name);
-            sender.sendMessage(formatter.format("You have ignored {red} %s", player.getName()));
+            send(sender, "You have ignored {red} %s", player.getName());
         } else {
             extra.getIgnoreList().add(name);
-            sender.sendMessage(formatter.format("You have unignored {red} %s", player.getName()));
+            send(sender, "You have unignored {red} %s", player.getName());
         }
     }
 }

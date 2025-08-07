@@ -12,9 +12,9 @@ public final class HelpCommand extends Command {
 
     @Override
     public void onCommand(CommandSender sender, String[] args) throws CommandException {
-        sender.sendMessage("Server commands: ");
+        send(sender, "Server commands: ");
         for (Command cmd : plugin.getCommands().getRegistry()) {
-            sender.sendMessage(plugin.getCommand(cmd.getName()).getUsage());
+            send(sender, plugin.getCommand(cmd.getName()).getUsage());
         }
     }
 }

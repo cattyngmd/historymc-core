@@ -10,6 +10,8 @@ import ru.historymc.core.command.exception.CommandException;
 import ru.historymc.core.command.exception.InvalidUsageException;
 import ru.historymc.core.command.exception.NoPlayerFoundException;
 
+import static ru.historymc.core.Globals.formatter;
+
 public abstract class Command implements CommandExecutor {
     protected final Main plugin;
     private final String name;
@@ -40,12 +42,12 @@ public abstract class Command implements CommandExecutor {
         this.usage = ChatColor.RED + usage;
     }
 
-    protected String highlight(String message) {
-        return ChatColor.RED + message + ChatColor.WHITE;
-    }
-
     protected void sendUsage(CommandSender sender) {
         sender.sendMessage(this.usage);
+    }
+
+    protected void send(CommandSender sender, String message, Object... obj) {
+        sender.sendMessage(formatter.format(message, obj));
     }
 
     protected Player player(String[] args) throws CommandException {

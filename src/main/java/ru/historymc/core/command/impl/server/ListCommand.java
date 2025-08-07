@@ -7,7 +7,6 @@ import ru.historymc.core.Main;
 import ru.historymc.core.command.Command;
 import ru.historymc.core.command.exception.CommandException;
 
-// мне похуй что она уже есть в ванилле
 public final class ListCommand extends Command {
     public ListCommand(Main plugin) {
         super(plugin, "list");
@@ -18,10 +17,6 @@ public final class ListCommand extends Command {
         int online = players().length;
 
         StringBuilder sb = new StringBuilder();
-        sb.append("Online [");
-        sb.append(highlight(String.valueOf(online)));
-        sb.append("]: ");
-
         for (int i = 0; i < online; i++) {
             Player player = players()[i];
             sb.append(player.getName());
@@ -32,6 +27,7 @@ public final class ListCommand extends Command {
             }
         }
 
+        send(sender, "Online [{red}%d{white}]: %s", online, sb);
         sender.sendMessage(sb.toString());
     }
 
