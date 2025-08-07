@@ -28,7 +28,6 @@ public final class ListCommand extends Command {
         }
 
         send(sender, "Online [{red}%d{white}]: %s", online, sb);
-        sender.sendMessage(sb.toString());
     }
 
     private Player[] players() {
