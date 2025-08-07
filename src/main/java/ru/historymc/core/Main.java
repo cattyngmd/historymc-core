@@ -8,6 +8,7 @@ import ru.historymc.core.chat.Chat;
 import ru.historymc.core.command.CommandManager;
 import ru.historymc.core.deathmessages.DeathListener;
 import ru.historymc.core.deathmessages.DeathMessages;
+import ru.historymc.core.entity.MinecartListener;
 import ru.historymc.core.illegals.IllegalsListener;
 import ru.historymc.core.player.PlayerListener;
 import ru.historymc.core.player.PlayerStorage;
@@ -44,6 +45,7 @@ public class Main extends JavaPlugin {
 
         register(new DeathListener(messages));
         register(new IllegalsListener());
+        register(new MinecartListener());
         register(new PlayerListener(this, config));
 
         for (World world : getServer().getWorlds()) {
