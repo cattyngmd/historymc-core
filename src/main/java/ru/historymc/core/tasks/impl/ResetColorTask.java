@@ -7,10 +7,11 @@ import ru.historymc.core.Main;
 import ru.historymc.core.player.PlayerExtra;
 import ru.historymc.core.player.PlayerStorage;
 import ru.historymc.core.tasks.AbstractTask;
+import ru.historymc.core.utils.Ticks;
 
 public class ResetColorTask extends AbstractTask {
     public ResetColorTask(Main main) {
-        super(main, 20 * 60, 100);
+        super(main, Ticks.ofMinutes(5), 100);
     }
 
     @Override

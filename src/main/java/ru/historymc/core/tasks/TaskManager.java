@@ -2,10 +2,7 @@ package ru.historymc.core.tasks;
 
 import org.bukkit.Bukkit;
 import ru.historymc.core.Main;
-import ru.historymc.core.tasks.impl.AnnouncerTask;
-import ru.historymc.core.tasks.impl.ResetColorTask;
-import ru.historymc.core.tasks.impl.RestartTask;
-import ru.historymc.core.tasks.impl.SpawnRestoreTask;
+import ru.historymc.core.tasks.impl.*;
 
 public final class TaskManager {
     private final Main plugin;
@@ -19,6 +16,7 @@ public final class TaskManager {
         register(new AnnouncerTask(plugin));
         register(new SpawnRestoreTask(plugin));
         register(new ResetColorTask(plugin));
+        register(new StatsTask(plugin));
     }
 
     private void register(AbstractTask task) {

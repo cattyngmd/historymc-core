@@ -5,7 +5,7 @@ import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import ru.historymc.core.Globals;
 
-public class Utils implements Globals {
+public final class Utils implements Globals {
     private static final int SUBSTRING = "Craft".length();
 
     public static int clamp(int a, int min, int max) {
