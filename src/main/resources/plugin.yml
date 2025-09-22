@@ -13,7 +13,7 @@ commands:
     usage: /kill
     aliases: [ suicide ]
   town:
-    usage: /town
+    usage: /town <suffix>
   join:
     usage: /join <player>
     aliases: [ jd, joindate ]
