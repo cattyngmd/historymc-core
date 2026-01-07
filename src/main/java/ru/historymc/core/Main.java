@@ -12,9 +12,11 @@ import ru.historymc.core.entity.MinecartListener;
 import ru.historymc.core.illegals.IllegalsListener;
 import ru.historymc.core.player.PlayerListener;
 import ru.historymc.core.player.PlayerStorage;
+import ru.historymc.core.server.ServerListener;
 import ru.historymc.core.tasks.TaskManager;
 import ru.historymc.core.utils.BlockPos;
 import ru.historymc.core.utils.ConfigFile;
+import ru.historymc.core.utils.events.EventHelper;
 
 import java.io.File;
 import java.io.IOException;
@@ -46,6 +48,7 @@ public class Main extends JavaPlugin {
         register(new DeathListener(messages));
         register(new IllegalsListener());
         register(new MinecartListener());
+        register(new ServerListener());
         register(new PlayerListener(this, config));
 
         for (World world : getServer().getWorlds()) {
@@ -60,7 +63,11 @@ public class Main extends JavaPlugin {
     }
 
     private void register(Listener listener) {
-        getServer().getPluginManager().registerEvents(listener, this);
+        EventHelper.register(this, listener);
+    }
+
+    public Config getPluginConfig() {
+        return config;
     }
 
     public Chat getChat() {
@@ -69,10 +76,6 @@ public class Main extends JavaPlugin {
 
     public DeathMessages getMessages() {
         return messages;
-    }
-
-    public Config getConfig() {
-        return config;
     }
 
     public CommandManager getCommands() {

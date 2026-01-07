@@ -3,16 +3,17 @@ package ru.historymc.core.illegals;
 import org.bukkit.Material;
 import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
-import org.bukkit.event.EventHandler;
+import org.bukkit.event.Event;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.entity.ItemSpawnEvent;
 import org.bukkit.event.player.PlayerInventoryEvent;
 import org.bukkit.inventory.ItemStack;
 import ru.historymc.core.utils.Utils;
+import ru.historymc.core.utils.events.EventHandler;
 
 public class IllegalsListener implements Listener {
-    @EventHandler
+    @EventHandler(type = Event.Type.PLAYER_INVENTORY)
     public void onSlot(PlayerInventoryEvent event) {
         for (int i = 0; i < event.getInventory().getSize(); i++) {
             ItemStack item = event.getInventory().getItem(i);
@@ -22,7 +23,7 @@ public class IllegalsListener implements Listener {
         }
     }
 
-    @EventHandler
+    @EventHandler(type = Event.Type.BLOCK_PLACE)
     public void onPlace(BlockPlaceEvent event) {
         Material material = event.getBlock().getType();
         Player player = event.getPlayer();
@@ -33,8 +34,8 @@ public class IllegalsListener implements Listener {
         }
     }
 
-    @EventHandler
-    public void onDrop(ItemSpawnEvent event) {
+    @EventHandler(type = Event.Type.ITEM_SPAWN)
+    public void onItemSpawn(ItemSpawnEvent event) {
         if (event.getEntity() instanceof Item) {
             Item entity = (Item) event.getEntity();
             if (Illegals.isIllegal(entity.getItemStack().getType())) {

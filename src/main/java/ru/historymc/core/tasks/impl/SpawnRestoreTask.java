@@ -21,7 +21,7 @@ public class SpawnRestoreTask extends AbstractTask {
     public void run() {
         World world = Bukkit.getWorld("world");
 
-        BlockPos pos = main.getConfig().getSpawn();
+        BlockPos pos = main.getPluginConfig().getSpawn();
         for (BlockPos bp : getSpawnPositions(pos)) {
             Location loc = bp.down().toLoc(world);
             Block block = world.getBlockAt(loc);

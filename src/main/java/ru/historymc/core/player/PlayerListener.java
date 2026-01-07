@@ -5,7 +5,6 @@ import org.bukkit.block.Block;
 import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
-import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.player.*;
@@ -13,6 +12,7 @@ import org.bukkit.plugin.Plugin;
 import ru.historymc.core.Config;
 import ru.historymc.core.utils.Utils;
 import ru.historymc.core.player.source.DataSource;
+import ru.historymc.core.utils.events.EventHandler;
 import uk.org.whoami.authme.cache.limbo.LimboCache;
 
 import java.nio.file.Path;
@@ -29,7 +29,7 @@ public final class PlayerListener implements Listener {
         this.config = config;
     }
 
-    @EventHandler
+    @EventHandler(type = Event.Type.PLAYER_JOIN)
     public void onJoin(PlayerJoinEvent event) {
         String player = event.getPlayer().getName().toLowerCase(Locale.ROOT);
         Path path = plugin.getDataFolder().toPath().resolve("players");
@@ -49,7 +49,7 @@ public final class PlayerListener implements Listener {
         });
     }
 
-    @EventHandler
+    @EventHandler(type = Event.Type.PLAYER_JOIN)
     public void onGameJoin(PlayerJoinEvent event) {
         String player = event.getPlayer().getName();
         PlayerExtra extra = getSource().loadPlayer(player);
@@ -61,7 +61,7 @@ public final class PlayerListener implements Listener {
         event.getPlayer().setDisplayName(extra.getColor() + player + ChatColor.WHITE);
     }
 
-    @EventHandler
+    @EventHandler(type = Event.Type.PLAYER_QUIT)
     public void onGameLeft(PlayerQuitEvent event) {
         String player = event.getPlayer().getName();
         PlayerExtra extra = PlayerStorage.getInstance().remove(player);
@@ -75,7 +75,7 @@ public final class PlayerListener implements Listener {
         }
     }
 
-    @EventHandler
+    @EventHandler(type = Event.Type.PLAYER_RESPAWN)
     public void onRespawn(PlayerRespawnEvent event) {
         Location location = event.getRespawnLocation();
         if (Math.abs(location.getX()) > 2 || Math.abs(location.getZ()) > 2) return;
@@ -87,7 +87,7 @@ public final class PlayerListener implements Listener {
         event.setRespawnLocation(location);
     }
 
-    @EventHandler
+    @EventHandler(type = Event.Type.PLAYER_MOVE)
     public void onWorldBorder(PlayerMoveEvent event) {
         double x = event.getTo().getX();
         double z = event.getTo().getZ();
@@ -98,7 +98,7 @@ public final class PlayerListener implements Listener {
         }
     }
 
-    @EventHandler(priority = Event.Priority.Monitor)
+    @EventHandler(type = Event.Type.ENTITY_DAMAGE, priority = Event.Priority.Monitor)
     public void onAttack(EntityDamageByEntityEvent event) {
         if (!(event.getDamager() instanceof Player))
             return;

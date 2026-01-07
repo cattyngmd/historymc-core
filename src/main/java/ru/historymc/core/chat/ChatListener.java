@@ -3,12 +3,13 @@ package ru.historymc.core.chat;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
-import org.bukkit.event.EventHandler;
+import org.bukkit.event.Event;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerChatEvent;
 import ru.historymc.core.Config;
 import ru.historymc.core.player.PlayerExtra;
 import ru.historymc.core.player.PlayerStorage;
+import ru.historymc.core.utils.events.EventHandler;
 
 public class ChatListener implements Listener {
     private final Config config;
@@ -17,7 +18,7 @@ public class ChatListener implements Listener {
         this.config = config;
     }
 
-    @EventHandler
+    @EventHandler(type = Event.Type.PLAYER_CHAT)
     public void onChat(PlayerChatEvent event) {
         onColoredText(event);
         onTown(event);

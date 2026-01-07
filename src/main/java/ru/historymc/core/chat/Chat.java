@@ -3,6 +3,7 @@ package ru.historymc.core.chat;
 import org.bukkit.command.CommandSender;
 import org.bukkit.event.Listener;
 import ru.historymc.core.Main;
+import ru.historymc.core.utils.events.EventHelper;
 
 public class Chat {
     private final DirectMessages dm = new DirectMessages();
@@ -13,7 +14,7 @@ public class Chat {
     }
 
     public void init() {
-        register(new ChatListener(main.getConfig()));
+        register(new ChatListener(main.getPluginConfig()));
     }
 
     public void send(CommandSender sender, CommandSender recipient, String message) {
@@ -21,6 +22,6 @@ public class Chat {
     }
 
     private void register(Listener listener) {
-        main.getServer().getPluginManager().registerEvents(listener, main);
+        EventHelper.register(main, listener);
     }
 }

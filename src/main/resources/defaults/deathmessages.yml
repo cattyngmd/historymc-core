@@ -19,15 +19,13 @@ drowning:
   - <victim> drowned.
 block-explosion:
   - <victim> was blown up.
-tnt-explosion:
-  - <victim> was blown up.
-bed-explosion:
-  - <victim> was bombed.
 entity-explosion:
   - <victim> blew up.
 void:
   - <victim> fell into the void.
 lightning:
   - <victim> was stroke by lightning.
+starvation:
+  - <victim> was starved to death.
 default:
   - <victim> died.
