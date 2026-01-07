@@ -18,7 +18,7 @@ commands:
     usage: /join <player>
     aliases: [ jd, joindate ]
   namecolor:
-    usage: /namecolor <player> <color>
+    usage: /namecolor <color>
     aliases: [ nc ]
   help:
     usage: /help
